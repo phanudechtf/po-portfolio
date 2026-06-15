@@ -90,11 +90,19 @@ body::before {
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 75%);
 }
 
+/* resume: scale the sheet to fit the viewport (desktop only, no print) */
+@media screen and (min-width: 1024px) {
+  .resume-fit {
+    transform: scale(var(--resume-scale, 1));
+    transform-origin: center center;
+  }
+}
+
 /* print / PDF: keep the infographic colors, hide chrome */
 @media print {
   @page {
-    size: A4;
-    margin: 8mm;
+    size: A4 portrait;
+    margin: 0;
   }
   body::before {
     display: none;
@@ -106,9 +114,6 @@ body::before {
     display: none !important;
   }
   .print-sheet {
-    max-width: 100% !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }

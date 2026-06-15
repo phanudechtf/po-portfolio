@@ -1,6 +1,7 @@
 "use client";
 
 import type { ComponentType, CSSProperties } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
   TbUser,
@@ -16,7 +17,6 @@ import {
   TbTargetArrow,
   TbArrowRight,
   TbCircleCheckFilled,
-  TbDownload,
   TbDeviceMobile,
   TbStack2,
   TbLanguage,
@@ -105,39 +105,72 @@ export default function ResumePage() {
   const { lang, toggle } = useLang();
   const r = resume[lang];
   const L = r.labels;
+  const stageRef = useRef<HTMLDivElement>(null);
+  const sheetRef = useRef<HTMLElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const stage = stageRef.current;
+    const sheet = sheetRef.current;
+    if (!stage || !sheet) return;
+    const mq = window.matchMedia("(min-width: 1024px)");
+    function fit() {
+      if (!mq.matches) {
+        setScale(1);
+        return;
+      }
+      const nw = sheet!.offsetWidth;
+      const nh = sheet!.offsetHeight;
+      if (!nw || !nh) return;
+      setScale(Math.min(stage!.clientWidth / nw, stage!.clientHeight / nh, 1));
+    }
+    fit();
+    const ro = new ResizeObserver(fit);
+    ro.observe(stage);
+    ro.observe(sheet);
+    mq.addEventListener("change", fit);
+    return () => {
+      ro.disconnect();
+      mq.removeEventListener("change", fit);
+    };
+  }, []);
 
   return (
-    <div className="min-h-screen bg-bg py-8">
+    <div className="bg-bg print:block print:h-auto print:overflow-visible lg:flex lg:h-screen lg:flex-col lg:overflow-hidden">
       {/* toolbar */}
-      <div className="no-print mx-auto mb-6 flex max-w-5xl items-center justify-between px-5">
+      <div className="no-print mx-auto flex w-full max-w-5xl items-center justify-between px-5 pt-6 pb-4">
         <Link href="/" className="text-sm text-muted transition-colors hover:text-fg">
           {L.backHome}
         </Link>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={toggle}
-            className="rounded-md border border-border bg-surface px-2.5 py-1.5 text-xs font-medium text-muted transition-colors hover:text-fg"
-          >
-            {lang === "th" ? "EN" : "TH"}
-          </button>
-          <button
-            onClick={() => window.print()}
-            className="inline-flex items-center gap-1.5 rounded-md bg-accent-strong px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-accent"
-          >
-            <TbDownload className="h-4 w-4" />
-            {L.download}
-          </button>
-        </div>
+        <button
+          onClick={toggle}
+          className="rounded-md border border-border bg-surface px-2.5 py-1.5 text-xs font-medium text-muted transition-colors hover:text-fg"
+        >
+          {lang === "th" ? "EN" : "TH"}
+        </button>
       </div>
 
-      {/* sheet */}
-      <article className="print-sheet mx-auto grid max-w-5xl overflow-hidden rounded-2xl bg-white shadow-2xl md:grid-cols-[300px_1fr]">
+      {/* stage */}
+      <div
+        ref={stageRef}
+        className="px-5 pb-8 print:block print:overflow-visible print:p-0 lg:flex lg:flex-1 lg:items-center lg:justify-center lg:overflow-hidden lg:px-5 lg:pb-4"
+      >
+        <article
+          ref={sheetRef}
+          style={{ "--resume-scale": scale } as CSSProperties}
+          className="resume-fit print-sheet mx-auto grid w-full max-w-5xl overflow-hidden rounded-2xl bg-white shadow-2xl md:grid-cols-[300px_1fr] print:w-[1100px] print:max-w-none print:rounded-none print:shadow-none print:[zoom:0.716]"
+        >
         {/* ── sidebar ───────────────────────────── */}
-        <aside className="space-y-7 bg-gradient-to-b from-[#0f2547] to-[#1b3a66] px-6 py-8 text-white">
+        <aside className="space-y-4 bg-gradient-to-b from-[#0f2547] to-[#1b3a66] px-6 py-6 text-white print:space-y-4 print:py-6">
           {/* identity */}
           <div className="text-center">
-            <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-white/10 ring-4 ring-white/20">
-              <TbUser className="h-16 w-16 text-white/40" />
+            <div className="mx-auto h-32 w-32 overflow-hidden rounded-full bg-white/10 ring-4 ring-white/20 print:h-24 print:w-24">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/profile.jpg"
+                alt={displayName(lang)}
+                className="h-full w-full object-cover object-top"
+              />
             </div>
             <h1 className="mt-4 font-display text-2xl font-bold tracking-tight">{displayName(lang)}</h1>
             <p className="mt-1 text-xs font-semibold tracking-wide text-sky-300">{r.title}</p>
@@ -197,10 +230,31 @@ export default function ResumePage() {
               ))}
             </div>
           </SideBlock>
+
+          {/* stats */}
+          <SideBlock icon={TbTrophy} title={L.stats}>
+            <div className="grid grid-cols-2 gap-2">
+              {r.stats.map((s) => {
+                const Icon = STAT_ICON[s.icon];
+                return (
+                  <div key={s.icon} className="rounded-md bg-white/5 px-2 py-2 text-center">
+                    <Icon className="mx-auto h-4 w-4 text-sky-300" />
+                    <div className="mt-1 font-display text-sm font-extrabold leading-tight text-white">
+                      {s.value}
+                    </div>
+                    {s.label ? (
+                      <div className="text-[10px] font-semibold leading-tight text-sky-300">{s.label}</div>
+                    ) : null}
+                  </div>
+                );
+              })}
+            </div>
+          </SideBlock>
+
         </aside>
 
         {/* ── content ───────────────────────────── */}
-        <main className="space-y-8 px-7 py-8 text-slate-600">
+        <main className="space-y-4 px-7 py-5 text-slate-600 print:space-y-3 print:py-5">
           {/* about */}
           <section>
             <Heading icon={TbUser}>{L.about}</Heading>
@@ -210,7 +264,7 @@ export default function ResumePage() {
           {/* experience */}
           <section>
             <Heading icon={TbBriefcase}>{L.experience}</Heading>
-            <div className="space-y-6">
+            <div className="space-y-3 print:space-y-3">
               {r.experience.map((e) => (
                 <div key={e.role + e.org}>
                   <div className="flex flex-wrap items-center justify-between gap-2">
@@ -240,90 +294,54 @@ export default function ResumePage() {
           {/* projects */}
           <section>
             <Heading icon={TbStar}>{L.projects}</Heading>
-            <div className="space-y-5">
+            <div className="space-y-3 print:space-y-3">
               {r.projects.map((p) => (
                 <div
                   key={p.no}
-                  className="rounded-xl border border-slate-200 bg-slate-50/60 p-4"
+                  className="rounded-xl border border-slate-200 bg-slate-50/60 p-4 print:p-2.5"
                 >
-                  <div className="grid gap-4 sm:grid-cols-[1fr_auto]">
-                    <div>
-                      <div className="flex items-center gap-2.5">
-                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-sm font-bold text-white">
-                          {p.no}
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-sm font-bold text-white">
+                      {p.no}
+                    </span>
+                    <h3 className="font-display text-base font-bold leading-tight" style={{ color: NAVY }}>
+                      {p.name}
+                    </h3>
+                  </div>
+                  <ul className="mt-3 space-y-1.5">
+                    {p.bullets.map((b, i) => (
+                      <li key={i} className="flex gap-2 text-sm leading-relaxed">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-slate-200 pt-3 print:mt-2.5 print:pt-2">
+                    <span className="text-[11px] font-bold tracking-widest text-slate-400">
+                      {L.technologies}
+                    </span>
+                    {p.tech.map((t) => {
+                      const { Icon, color } = TECH[t.icon];
+                      return (
+                        <span
+                          key={t.name}
+                          className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-600"
+                        >
+                          <Icon className="h-3.5 w-3.5 shrink-0" style={{ color }} />
+                          {t.name}
                         </span>
-                        <h3 className="font-display text-base font-bold leading-tight" style={{ color: NAVY }}>
-                          {p.name}
-                        </h3>
-                      </div>
-                      <ul className="mt-3 space-y-1.5">
-                        {p.bullets.map((b, i) => (
-                          <li key={i} className="flex gap-2 text-sm leading-relaxed">
-                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600" />
-                            <span>{b}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="sm:w-40">
-                      {p.image ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={p.image}
-                          alt={p.name}
-                          className="mb-3 h-24 w-full rounded-lg border border-slate-200 object-cover sm:h-20"
-                        />
-                      ) : null}
-                      <div className="text-[11px] font-bold tracking-widest text-slate-400">
-                        {L.technologies}
-                      </div>
-                      <div className="mt-2 space-y-1.5">
-                        {p.tech.map((t) => {
-                          const { Icon, color } = TECH[t.icon];
-                          return (
-                            <div key={t.name} className="flex items-center gap-2 text-xs text-slate-600">
-                              <Icon className="h-4 w-4 shrink-0" style={{ color }} />
-                              <span>{t.name}</span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
+                      );
+                    })}
                   </div>
                 </div>
               ))}
             </div>
           </section>
 
-          {/* stats */}
-          <section>
-            <Heading icon={TbTrophy}>{L.stats}</Heading>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-              {r.stats.map((s) => {
-                const Icon = STAT_ICON[s.icon];
-                return (
-                  <div
-                    key={s.icon}
-                    className="rounded-xl border border-slate-200 bg-white p-3 text-center"
-                  >
-                    <Icon className="mx-auto h-6 w-6 text-blue-600" />
-                    <div className="mt-1.5 font-display text-lg font-extrabold leading-tight" style={{ color: NAVY }}>
-                      {s.value}
-                    </div>
-                    {s.label ? (
-                      <div className="text-xs font-semibold text-blue-700">{s.label}</div>
-                    ) : null}
-                    <div className="mt-1 text-[11px] leading-snug text-slate-500">{s.desc}</div>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-
           {/* soft skills */}
           <section>
             <Heading icon={TbUsers}>{L.softSkills}</Heading>
-            <div className="grid gap-2.5 sm:grid-cols-2">
+            <div className="grid gap-2.5 sm:grid-cols-2 print:gap-1.5">
               {r.softSkills.map((s) => {
                 const Icon = SOFT_ICON[s.icon];
                 return (
@@ -341,7 +359,7 @@ export default function ResumePage() {
           {/* career goal */}
           <section>
             <Heading icon={TbTargetArrow}>{L.careerGoal}</Heading>
-            <div className="rounded-xl bg-gradient-to-r from-[#0f2547] to-[#1b3a66] p-5 text-white">
+            <div className="rounded-xl bg-gradient-to-r from-[#0f2547] to-[#1b3a66] p-5 text-white print:p-3">
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <span className="flex items-center gap-2 rounded-lg bg-white/10 px-3 py-2 text-sm font-bold">
                   <TbCode className="h-5 w-5 text-sky-300" />
@@ -359,7 +377,8 @@ export default function ResumePage() {
             </div>
           </section>
         </main>
-      </article>
+        </article>
+      </div>
     </div>
   );
 }
@@ -395,7 +414,7 @@ function ContactRow({ icon: Icon, text }: { icon: Icon; text: string }) {
 
 function Heading({ icon: Icon, children }: { icon: Icon; children: React.ReactNode }) {
   return (
-    <div className="mb-4 flex items-center gap-3">
+    <div className="mb-2.5 flex items-center gap-3 print:mb-2">
       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#13294b] text-white">
         <Icon className="h-5 w-5" />
       </span>

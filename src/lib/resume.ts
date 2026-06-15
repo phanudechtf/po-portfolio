@@ -171,10 +171,8 @@ export const resume: Record<Lang, ResumeContent> = {
         name: "Company Profile & Recruitment Platform",
         bullets: [
           "พัฒนาระบบครบวงจรด้วยตัวเอง ตั้งแต่ UX/UI ถึง Full-stack",
-          "เว็บไซต์บริษัท 2 ภาษา (ไทย/อังกฤษ)",
           "ระบบสมัครงาน 5 ขั้นตอน พร้อมสร้าง PDF Resume อัตโนมัติ",
-          "Recruitment Dashboard สำหรับฝ่าย HR",
-          "Admin จัดการ Content, Event และประกาศรับสมัครงาน",
+          "Recruitment Dashboard สำหรับฝ่าย HR และ Admin จัดการ Content",
         ],
         tech: [
           { name: "Next.js", icon: "nextjs" },
@@ -188,11 +186,8 @@ export const resume: Record<Lang, ResumeContent> = {
         no: "02",
         name: "IoT Device Management Platform",
         bullets: [
-          "ระบบติดตามและบริหารจัดการอุปกรณ์ IoT แบบ Real-time",
-          "แสดงตำแหน่งอุปกรณ์บนแผนที่ด้วย Deck.gl",
-          "ระบบสั่งงานอุปกรณ์และตรวจสอบสถานะแบบทันที",
-          "กำหนดสิทธิ์ผู้ใช้งาน 3 ระดับ (RBAC)",
-          "เชื่อมต่อและดึงข้อมูลกับ External API",
+          "ระบบติดตาม สั่งงาน และดูสถานะอุปกรณ์ IoT แบบ Real-time",
+          "แสดงตำแหน่งอุปกรณ์บนแผนที่ด้วย Deck.gl และกำหนดสิทธิ์ 3 ระดับ (RBAC)",
           "ออกแบบสถาปัตยกรรมรองรับประมาณ 20,000 Devices",
         ],
         tech: [
@@ -208,10 +203,9 @@ export const resume: Record<Lang, ResumeContent> = {
         no: "03",
         name: "Customer Satisfaction Survey Platform",
         bullets: [
-          "ระบบประเมินความพึงพอใจลูกค้าใน Enterprise Portal",
-          "แบบประเมิน 4 หมวด 28 เกณฑ์",
+          "ระบบประเมินความพึงพอใจลูกค้าใน Enterprise Portal (4 หมวด 28 เกณฑ์)",
           "Dashboard สรุปผลการประเมิน แยกตามแผนก",
-          "รายงานผลและส่งออกข้อมูลเพื่อนำไปสนับสนุนการตัดสินใจ",
+          "รายงานผลและส่งออกข้อมูลเพื่อสนับสนุนการตัดสินใจ",
         ],
         tech: [
           { name: "React", icon: "react" },
@@ -262,7 +256,7 @@ export const resume: Record<Lang, ResumeContent> = {
     },
     title: "FULL-STACK DEVELOPER | PRODUCT OWNER",
     about:
-      "A full-stack developer experienced in building web applications end to end — from gathering requirements and designing UX/UI to developing the frontend and backend and deploying to production. Experienced in Recruitment, IoT and Enterprise Survey systems, and growing toward Product Ownership and Product Management.",
+      "A full-stack developer who builds web applications end to end — from requirements and UX/UI to frontend, backend and production deployment. Experienced with Recruitment, IoT and Enterprise Survey systems, and growing toward Product Ownership.",
     education: [
       {
         degree: "B.Sc. in Computer Science",
@@ -347,10 +341,8 @@ export const resume: Record<Lang, ResumeContent> = {
         name: "Company Profile & Recruitment Platform",
         bullets: [
           "Built end to end myself — from UX/UI through full-stack.",
-          "Bilingual company website (Thai / English).",
           "5-step application flow with automatic PDF resume generation.",
-          "Recruitment dashboard for the HR team.",
-          "Admin for managing content, events and job postings.",
+          "Recruitment dashboard for HR plus a content-management admin.",
         ],
         tech: [
           { name: "Next.js", icon: "nextjs" },
@@ -364,11 +356,8 @@ export const resume: Record<Lang, ResumeContent> = {
         no: "02",
         name: "IoT Device Management Platform",
         bullets: [
-          "Real-time IoT device monitoring and management system.",
-          "Device locations on a map with Deck.gl.",
-          "Real-time device control and status checks.",
-          "3-tier user permissions (RBAC).",
-          "External API integration and data sync.",
+          "Real-time IoT device monitoring, control and status checks.",
+          "Device locations on a map with Deck.gl, plus 3-tier permissions (RBAC).",
           "Architected to support ~20,000 devices.",
         ],
         tech: [
@@ -384,8 +373,7 @@ export const resume: Record<Lang, ResumeContent> = {
         no: "03",
         name: "Customer Satisfaction Survey Platform",
         bullets: [
-          "Customer satisfaction survey within an enterprise portal.",
-          "4-section / 28-criteria evaluation form.",
+          "Customer satisfaction survey within an enterprise portal (4 sections / 28 criteria).",
           "Dashboard summarizing results by department.",
           "Reporting and data export to support decisions.",
         ],
