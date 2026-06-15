@@ -1,205 +1,421 @@
 import type { Lang } from "./content";
 
+export type IconKey =
+  | "nextjs"
+  | "react"
+  | "typescript"
+  | "tailwind"
+  | "mongodb"
+  | "nodejs"
+  | "bun"
+  | "elysia"
+  | "express"
+  | "postgresql"
+  | "mysql"
+  | "docker"
+  | "git"
+  | "restapi"
+  | "json"
+  | "deckgl"
+  | "figma"
+  | "illustrator"
+  | "php"
+  | "html"
+  | "css"
+  | "javascript";
+
+export type Tech = { name: string; icon: IconKey };
+
 export type ResumeContent = {
   labels: {
-    summary: string;
+    about: string;
     experience: string;
     projects: string;
-    skills: string;
+    techStack: string;
     education: string;
-    languages: string;
-    qualities: string;
-    personal: string;
-    age: string;
-    location: string;
+    strengths: string;
+    stats: string;
+    softSkills: string;
+    careerGoal: string;
+    contact: string;
+    technologies: string;
     present: string;
     download: string;
     backHome: string;
   };
-  summary: string;
+  title: string;
+  about: string;
+  education: { degree: string; org: string; period: string }[];
+  strengths: string[];
+  techStack: { group: string; items: Tech[] }[];
   experience: {
     role: string;
     org: string;
     period: string;
     bullets: string[];
   }[];
-  projects: { name: string; desc: string; link?: string }[];
-  skills: { group: string; items: string }[];
-  education: { degree: string; org: string; period: string }[];
-  qualities: string[];
-  languages: string[];
+  projects: {
+    no: string;
+    name: string;
+    bullets: string[];
+    tech: Tech[];
+    image?: string;
+  }[];
+  stats: { value: string; label: string; desc: string; icon: string }[];
+  softSkills: { label: string; icon: string }[];
+  careerGoal: { from: string; to: string; quote: string };
 };
 
 export const resume: Record<Lang, ResumeContent> = {
   th: {
     labels: {
-      summary: "สรุปโดยย่อ",
+      about: "เกี่ยวกับฉัน",
       experience: "ประสบการณ์การทำงาน",
-      projects: "ผลงานเด่น",
-      skills: "ทักษะด้านคอมพิวเตอร์",
-      education: "ประวัติการศึกษา",
-      languages: "ภาษา",
-      qualities: "คุณสมบัติส่วนตัว",
-      personal: "ข้อมูลส่วนตัว",
-      age: "อายุ",
-      location: "ที่อยู่",
+      projects: "ผลงานสำคัญ",
+      techStack: "ทักษะทางเทคนิค (Tech Stack)",
+      education: "การศึกษา",
+      strengths: "จุดเด่นของฉัน",
+      stats: "ผลงานและตัวเลขสำคัญ",
+      softSkills: "ทักษะด้านการทำงาน (Soft Skills)",
+      careerGoal: "เป้าหมายในสายอาชีพ",
+      contact: "ข้อมูลติดต่อ",
+      technologies: "TECHNOLOGIES",
       present: "ปัจจุบัน",
       download: "ดาวน์โหลด PDF",
       backHome: "← กลับหน้าแรก",
     },
-    summary:
-      "Full-stack Developer ประสบการณ์ ~1 ปี ลงมือสร้าง product มาทั้ง stack ด้วยตนเอง ตั้งแต่ออกแบบ UX/UI จนถึง frontend, backend และฐานข้อมูล กำลังก้าวสู่บทบาท Product Owner — ถนัดแปลง user need และเป้าหมายธุรกิจเป็น requirement ที่ทำได้จริง และดูแลงานเองตั้งแต่ต้นจนจบ",
-    experience: [
+    title: "FULL-STACK DEVELOPER | PRODUCT OWNER",
+    about:
+      "นักพัฒนาระบบ Full-stack ที่มีประสบการณ์พัฒนา Web Application ตั้งแต่การเก็บ Requirement ออกแบบ UX/UI พัฒนา Frontend และ Backend ไปจนถึง Deploy ใช้งานจริง มีประสบการณ์สร้างระบบ Recruitment, IoT และ Enterprise Survey พร้อมความสนใจในการเติบโตสู่สาย Product Owner และ Product Management",
+    education: [
       {
-        role: "Full-stack Developer",
-        org: "บริษัทพัฒนาซอฟต์แวร์",
-        period: "ก.ค. 2568 – ปัจจุบัน",
-        bullets: [
-          "พัฒนา Company Profile & Recruitment Platform แบบ end-to-end — ออกแบบ UX/UI และทำ full-stack (Next.js, TypeScript, MongoDB) deploy ใช้งานจริง พร้อม public site สองภาษา, ระบบรับสมัครงาน 5 ขั้น, สร้าง PDF อัตโนมัติ, recruitment dashboard และ admin จัดการ content/event/ประกาศงาน",
-          "พัฒนา IoT device-management platform ครอบคลุม frontend, backend และ infrastructure — map monitoring (Deck.gl), สั่งงานอุปกรณ์ realtime, RBAC 3 ระดับ, sync external API อัตโนมัติ; backend Bun/Elysia + PostgreSQL บน Docker ออกแบบรองรับอุปกรณ์ระดับ ~20,000 ตัว",
-          "พัฒนา feature Customer Satisfaction Survey บน enterprise portal (React) — แบบประเมิน 4 ส่วน 28 เกณฑ์ พร้อม dashboard สรุปผลตามแผนก",
-          "ใช้ AI tools ช่วยพัฒนาและเร่ง workflow ครอบคลุมหลายเครื่องมือ",
+        degree: "วิทยาศาสตรบัณฑิต สาขาวิทยาการคอมพิวเตอร์",
+        org: "มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตศรีราชา",
+        period: "2563 – 2567",
+      },
+    ],
+    strengths: [
+      "พัฒนาระบบครบวงจร (End-to-End)",
+      "คิดเชิงผลิตภัณฑ์ (Product Thinking)",
+      "สื่อสารและประสานงานกับผู้ใช้/ทีมได้ดี",
+      "ทำงานแบบ Agile / Scrum",
+      "ออกแบบสถาปัตยกรรมระบบ",
+      "แก้ปัญหาอย่างเป็นระบบ",
+      "เรียนรู้เทคโนโลยีใหม่อย่างต่อเนื่อง",
+    ],
+    techStack: [
+      {
+        group: "FRONTEND",
+        items: [
+          { name: "Next.js", icon: "nextjs" },
+          { name: "React.js", icon: "react" },
+          { name: "TypeScript", icon: "typescript" },
+          { name: "Tailwind CSS", icon: "tailwind" },
         ],
       },
       {
-        role: "Full-stack Developer Intern",
-        org: "บริษัทชาร์โคล ดีไซน์ จำกัด",
+        group: "BACKEND",
+        items: [
+          { name: "Node.js", icon: "nodejs" },
+          { name: "Bun", icon: "bun" },
+          { name: "Elysia", icon: "elysia" },
+          { name: "Express.js", icon: "express" },
+        ],
+      },
+      {
+        group: "DATABASE",
+        items: [
+          { name: "PostgreSQL", icon: "postgresql" },
+          { name: "MongoDB", icon: "mongodb" },
+          { name: "MySQL", icon: "mysql" },
+        ],
+      },
+      {
+        group: "INFRASTRUCTURE & TOOLS",
+        items: [
+          { name: "Docker", icon: "docker" },
+          { name: "Git", icon: "git" },
+          { name: "REST API", icon: "restapi" },
+          { name: "JSON", icon: "json" },
+        ],
+      },
+    ],
+    experience: [
+      {
+        role: "FULL-STACK DEVELOPER",
+        org: "บริษัท แอลอีดี อน เทรดดิ้ง จำกัด",
+        period: "ก.ค. 2568 – ปัจจุบัน",
+        bullets: [
+          "พัฒนาระบบ Web Application สำหรับธุรกิจและองค์กร ตั้งแต่การเก็บความต้องการผู้ใช้งาน",
+          "ออกแบบ UX/UI พัฒนา Frontend และ Backend ไปจนถึง Deploy และดูแลระบบจริง",
+          "ออกแบบ Workflow และสถาปัตยกรรมระบบเพื่อรองรับการเติบโตในอนาคต",
+          "ประสานงานกับผู้ใช้งาน ทีมภายใน และผู้มีส่วนเกี่ยวข้องเพื่อส่งมอบผลิตภัณฑ์ที่มีคุณค่า",
+        ],
+      },
+      {
+        role: "FULL-STACK DEVELOPER INTERN",
+        org: "บริษัท ฮาร์โค้ด ดีไซน์ จำกัด",
         period: "พ.ค. 2566 – พ.ย. 2566",
         bullets: [
-          "พัฒนาเว็บไซต์ของบริษัทด้วยตนเองตั้งแต่เริ่มจนเสร็จสมบูรณ์ — ออกแบบ UX/UI วางโครงร่างใน Figma และออกแบบโลโก้กับไอคอนใน Adobe Illustrator",
-          "เขียนโค้ดฝั่งผู้ใช้ด้วย HTML, CSS, JavaScript",
-          "ดูแลฐานข้อมูล MySQL พร้อมเขียนสคริปต์ฝั่งเซิร์ฟเวอร์ (Backend)",
-          "บริหารจัดการงานทั้งหมดด้วยตนเอง พร้อมประสานงานและรับคำแนะนำจากทีมภายในอย่างต่อเนื่อง",
-          "มุ่งเน้นสร้างเว็บไซต์ที่ใช้งานง่าย ตรงตามภาพลักษณ์แบรนด์ และรองรับการขยายในอนาคต",
+          "ออกแบบและพัฒนาเว็บไซต์ของบริษัท ตั้งแต่เริ่มจนใช้งานจริง",
+          "ออกแบบ UX/UI ด้วย Figma และสร้าง Branding ด้วย Adobe Illustrator",
+          "พัฒนา Frontend ด้วย HTML, CSS, JavaScript และ Backend ด้วย PHP",
+          "ดูแลฐานข้อมูล MySQL และเขียนสคริปต์ฝั่งเซิร์ฟเวอร์",
+          "ประสานงานกับทีมภายในเพื่อให้งานสำเร็จตามเป้าหมาย",
         ],
       },
     ],
     projects: [
       {
+        no: "01",
         name: "Company Profile & Recruitment Platform",
-        desc: "เว็บบริษัท + ระบบรับสมัครงานครบวงจร พร้อม admin dashboard (Next.js, MongoDB) — พัฒนา end-to-end, deploy ใช้งานจริง",
+        bullets: [
+          "พัฒนาระบบครบวงจรด้วยตัวเอง ตั้งแต่ UX/UI ถึง Full-stack",
+          "เว็บไซต์บริษัท 2 ภาษา (ไทย/อังกฤษ)",
+          "ระบบสมัครงาน 5 ขั้นตอน พร้อมสร้าง PDF Resume อัตโนมัติ",
+          "Recruitment Dashboard สำหรับฝ่าย HR",
+          "Admin จัดการ Content, Event และประกาศรับสมัครงาน",
+        ],
+        tech: [
+          { name: "Next.js", icon: "nextjs" },
+          { name: "TypeScript", icon: "typescript" },
+          { name: "MongoDB", icon: "mongodb" },
+          { name: "Tailwind CSS", icon: "tailwind" },
+        ],
+        image: "/loh-dashboard.png",
       },
       {
-        name: "IoT AC / Street Control",
-        desc: "แพลตฟอร์ม monitor และควบคุมอุปกรณ์ IoT บนแผนที่ รองรับ ~20k devices (Next.js, Bun/Elysia, PostgreSQL, Docker)",
+        no: "02",
+        name: "IoT Device Management Platform",
+        bullets: [
+          "ระบบติดตามและบริหารจัดการอุปกรณ์ IoT แบบ Real-time",
+          "แสดงตำแหน่งอุปกรณ์บนแผนที่ด้วย Deck.gl",
+          "ระบบสั่งงานอุปกรณ์และตรวจสอบสถานะแบบทันที",
+          "กำหนดสิทธิ์ผู้ใช้งาน 3 ระดับ (RBAC)",
+          "เชื่อมต่อและดึงข้อมูลกับ External API",
+          "ออกแบบสถาปัตยกรรมรองรับประมาณ 20,000 Devices",
+        ],
+        tech: [
+          { name: "Bun", icon: "bun" },
+          { name: "Elysia", icon: "elysia" },
+          { name: "PostgreSQL", icon: "postgresql" },
+          { name: "Docker", icon: "docker" },
+          { name: "Deck.gl", icon: "deckgl" },
+        ],
+        image: "/iot-monitoring.png",
       },
       {
-        name: "Customer Satisfaction Survey",
-        desc: "ระบบแบบประเมินความพอใจลูกค้า 4 ส่วน 28 เกณฑ์ พร้อม dashboard สรุปตามแผนก (React, Material-UI)",
+        no: "03",
+        name: "Customer Satisfaction Survey Platform",
+        bullets: [
+          "ระบบประเมินความพึงพอใจลูกค้าใน Enterprise Portal",
+          "แบบประเมิน 4 หมวด 28 เกณฑ์",
+          "Dashboard สรุปผลการประเมิน แยกตามแผนก",
+          "รายงานผลและส่งออกข้อมูลเพื่อนำไปสนับสนุนการตัดสินใจ",
+        ],
+        tech: [
+          { name: "React", icon: "react" },
+          { name: "TypeScript", icon: "typescript" },
+          { name: "PostgreSQL", icon: "postgresql" },
+        ],
       },
     ],
-    skills: [
-      { group: "Programming", items: "HTML5, CSS3, JavaScript, TypeScript, PHP, Node.js" },
-      { group: "Frameworks", items: "React.js / Next.js, Express.js, Bun / Elysia, Tailwind CSS, Bootstrap" },
-      { group: "Database & DevOps", items: "MongoDB, PostgreSQL, MySQL, Docker, Git, RESTful APIs" },
-      { group: "AI Integration", items: "Chatbot, Generative AI, AI-assisted development" },
-      { group: "Design & Editor", items: "Figma, Adobe Illustrator, VS Code, Navicat" },
+    stats: [
+      { value: "20,000+", label: "Devices", desc: "รองรับอุปกรณ์ IoT ประมาณ 20,000+ เครื่อง", icon: "devices" },
+      { value: "3", label: "Enterprise Platforms", desc: "พัฒนาแพลตฟอร์มสำหรับองค์กร 3 ระบบ", icon: "platforms" },
+      { value: "2", label: "Languages", desc: "เว็บไซต์ 2 ภาษา ไทย / อังกฤษ", icon: "languages" },
+      { value: "5", label: "Steps", desc: "ระบบสมัครงาน 5 ขั้นตอน", icon: "steps" },
+      { value: "End-to-End", label: "", desc: "พัฒนาระบบครบวงจรตั้งแต่ต้นจน Deploy", icon: "endtoend" },
     ],
-    education: [
-      {
-        degree: "ปริญญาตรี คณะวิทยาศาสตร์ — วิทยาการคอมพิวเตอร์ (ภาคพิเศษ)",
-        org: "มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตศรีราชา",
-        period: "2563 – 2567",
-      },
-      {
-        degree: "มัธยมปลาย หลักสูตรวิทย์-คณิต",
-        org: "โรงเรียนบางปะกอกวิทยาคม",
-        period: "2560 – 2562",
-      },
+    softSkills: [
+      { label: "การเก็บความต้องการ (Requirement Gathering)", icon: "requirement" },
+      { label: "การทำงานเป็นทีม (Teamwork)", icon: "teamwork" },
+      { label: "การออกแบบ User Flow และ Wireframe", icon: "userflow" },
+      { label: "การสื่อสารกับผู้มีส่วนเกี่ยวข้อง", icon: "communication" },
+      { label: "การคิดและกำหนดคุณค่าผลิตภัณฑ์", icon: "value" },
+      { label: "ความรับผิดชอบและตรงต่อเวลา", icon: "responsibility" },
     ],
-    qualities: [
-      "ทำงานร่วมกับทีมได้อย่างมีประสิทธิภาพ และประสานงานได้ดี",
-      "มีความรับผิดชอบ ตรงต่อเวลา และใส่ใจในรายละเอียดงาน",
-      "มีมนุษยสัมพันธ์ดี ปรับตัวเข้ากับสภาพแวดล้อมการทำงานได้รวดเร็ว",
-      "ทำงานภายใต้ความกดดัน และรับมือกับสถานการณ์ที่เปลี่ยนแปลงได้ดี",
-      "มีความคิดสร้างสรรค์ เปิดรับและเรียนรู้สิ่งใหม่ ๆ เพื่อพัฒนาตนเองอย่างต่อเนื่อง",
-    ],
-    languages: [],
+    careerGoal: {
+      from: "FULL-STACK DEVELOPER",
+      to: "PRODUCT OWNER",
+      quote:
+        "มุ่งเน้นการสร้างผลิตภัณฑ์ที่ตอบโจทย์ผู้ใช้และธุรกิจ ด้วยเทคโนโลยีที่เหมาะสม เพื่อสร้างคุณค่าและผลลัพธ์ที่ยั่งยืน",
+    },
   },
 
   en: {
     labels: {
-      summary: "Summary",
-      experience: "Experience",
-      projects: "Selected Projects",
-      skills: "Technical Skills",
+      about: "About Me",
+      experience: "Work Experience",
+      projects: "Key Projects",
+      techStack: "Technical Skills (Tech Stack)",
       education: "Education",
-      languages: "Languages",
-      qualities: "Personal Qualities",
-      personal: "Personal Info",
-      age: "Age",
-      location: "Location",
+      strengths: "My Strengths",
+      stats: "Highlights & Key Numbers",
+      softSkills: "Soft Skills",
+      careerGoal: "Career Goal",
+      contact: "Contact",
+      technologies: "TECHNOLOGIES",
       present: "Present",
       download: "Download PDF",
       backHome: "← Back to home",
     },
-    summary:
-      "A full-stack developer with ~1 year of experience building products end to end — from UX/UI design through frontend, backend and database — now moving into Product Ownership. I translate user and business needs into requirements that can actually be built, and see work through from start to finish.",
-    experience: [
+    title: "FULL-STACK DEVELOPER | PRODUCT OWNER",
+    about:
+      "A full-stack developer experienced in building web applications end to end — from gathering requirements and designing UX/UI to developing the frontend and backend and deploying to production. Experienced in Recruitment, IoT and Enterprise Survey systems, and growing toward Product Ownership and Product Management.",
+    education: [
       {
-        role: "Full-stack Developer",
-        org: "Software Development Company",
-        period: "Jul 2025 – Present",
-        bullets: [
-          "Developed a Company Profile & Recruitment Platform end to end — designed the UX/UI and built it full-stack (Next.js, TypeScript, MongoDB), deployed live, with a bilingual public site, a 5-step application flow, automatic PDF generation, a recruitment dashboard and an admin area for content / events / job postings.",
-          "Developed an IoT device-management platform across frontend, backend and infrastructure — map monitoring (Deck.gl), real-time device control, 3-tier RBAC, automated external-API sync; Bun/Elysia + PostgreSQL backend on Docker, architected for ~20,000 devices.",
-          "Built the Customer Satisfaction Survey feature on an enterprise portal (React) — a 4-section / 28-criteria form with a department-level results dashboard.",
-          "Used AI tools across the workflow to speed up development.",
+        degree: "B.Sc. in Computer Science",
+        org: "Kasetsart University, Sriracha Campus",
+        period: "2020 – 2024",
+      },
+    ],
+    strengths: [
+      "End-to-end system development",
+      "Product thinking",
+      "Strong communication with users & teams",
+      "Agile / Scrum workflow",
+      "System architecture design",
+      "Systematic problem solving",
+      "Continuous learning of new tech",
+    ],
+    techStack: [
+      {
+        group: "FRONTEND",
+        items: [
+          { name: "Next.js", icon: "nextjs" },
+          { name: "React.js", icon: "react" },
+          { name: "TypeScript", icon: "typescript" },
+          { name: "Tailwind CSS", icon: "tailwind" },
         ],
       },
       {
-        role: "Full-stack Developer Intern",
-        org: "Charcoal Design Co., Ltd.",
+        group: "BACKEND",
+        items: [
+          { name: "Node.js", icon: "nodejs" },
+          { name: "Bun", icon: "bun" },
+          { name: "Elysia", icon: "elysia" },
+          { name: "Express.js", icon: "express" },
+        ],
+      },
+      {
+        group: "DATABASE",
+        items: [
+          { name: "PostgreSQL", icon: "postgresql" },
+          { name: "MongoDB", icon: "mongodb" },
+          { name: "MySQL", icon: "mysql" },
+        ],
+      },
+      {
+        group: "INFRASTRUCTURE & TOOLS",
+        items: [
+          { name: "Docker", icon: "docker" },
+          { name: "Git", icon: "git" },
+          { name: "REST API", icon: "restapi" },
+          { name: "JSON", icon: "json" },
+        ],
+      },
+    ],
+    experience: [
+      {
+        role: "FULL-STACK DEVELOPER",
+        org: "LEDonhome Trading Co.,Ltd",
+        period: "Jul 2025 – Present",
+        bullets: [
+          "Develop web applications for businesses and organizations, starting from gathering user requirements.",
+          "Design UX/UI, build the frontend and backend, and deploy and operate live systems.",
+          "Design workflows and system architecture to support future growth.",
+          "Coordinate with users, internal teams and stakeholders to deliver valuable products.",
+        ],
+      },
+      {
+        role: "FULL-STACK DEVELOPER INTERN",
+        org: "Charcoal Design Co.,Ltd.",
         period: "May 2023 – Nov 2023",
         bullets: [
-          "Developed the company website end to end myself — designed the UX/UI and wireframes in Figma, and created the logo and icons in Adobe Illustrator.",
-          "Built the client side with HTML, CSS and JavaScript.",
-          "Maintained the MySQL database and wrote server-side (backend) scripts.",
-          "Managed the entire project myself while coordinating with and taking guidance from the internal team.",
-          "Focused on an easy-to-use website that matched the brand image and supported future growth.",
+          "Designed and developed the company website end to end, from start to production.",
+          "Designed UX/UI in Figma and created branding in Adobe Illustrator.",
+          "Built the frontend with HTML, CSS, JavaScript and the backend with PHP.",
+          "Maintained the MySQL database and wrote server-side scripts.",
+          "Coordinated with the internal team to deliver work on target.",
         ],
       },
     ],
     projects: [
       {
+        no: "01",
         name: "Company Profile & Recruitment Platform",
-        desc: "Company site + end-to-end recruitment system with admin dashboard (Next.js, MongoDB) — developed end to end, deployed live.",
+        bullets: [
+          "Built end to end myself — from UX/UI through full-stack.",
+          "Bilingual company website (Thai / English).",
+          "5-step application flow with automatic PDF resume generation.",
+          "Recruitment dashboard for the HR team.",
+          "Admin for managing content, events and job postings.",
+        ],
+        tech: [
+          { name: "Next.js", icon: "nextjs" },
+          { name: "TypeScript", icon: "typescript" },
+          { name: "MongoDB", icon: "mongodb" },
+          { name: "Tailwind CSS", icon: "tailwind" },
+        ],
+        image: "/loh-dashboard.png",
       },
       {
-        name: "IoT AC / Street Control",
-        desc: "Map-based platform to monitor and control IoT devices, scaled for ~20k devices (Next.js, Bun/Elysia, PostgreSQL, Docker).",
+        no: "02",
+        name: "IoT Device Management Platform",
+        bullets: [
+          "Real-time IoT device monitoring and management system.",
+          "Device locations on a map with Deck.gl.",
+          "Real-time device control and status checks.",
+          "3-tier user permissions (RBAC).",
+          "External API integration and data sync.",
+          "Architected to support ~20,000 devices.",
+        ],
+        tech: [
+          { name: "Bun", icon: "bun" },
+          { name: "Elysia", icon: "elysia" },
+          { name: "PostgreSQL", icon: "postgresql" },
+          { name: "Docker", icon: "docker" },
+          { name: "Deck.gl", icon: "deckgl" },
+        ],
+        image: "/iot-monitoring.png",
       },
       {
-        name: "Customer Satisfaction Survey",
-        desc: "Customer satisfaction survey, 4 sections / 28 criteria, with a department-level results dashboard (React, Material-UI).",
+        no: "03",
+        name: "Customer Satisfaction Survey Platform",
+        bullets: [
+          "Customer satisfaction survey within an enterprise portal.",
+          "4-section / 28-criteria evaluation form.",
+          "Dashboard summarizing results by department.",
+          "Reporting and data export to support decisions.",
+        ],
+        tech: [
+          { name: "React", icon: "react" },
+          { name: "TypeScript", icon: "typescript" },
+          { name: "PostgreSQL", icon: "postgresql" },
+        ],
       },
     ],
-    skills: [
-      { group: "Programming", items: "HTML5, CSS3, JavaScript, TypeScript, PHP, Node.js" },
-      { group: "Frameworks", items: "React.js / Next.js, Express.js, Bun / Elysia, Tailwind CSS, Bootstrap" },
-      { group: "Database & DevOps", items: "MongoDB, PostgreSQL, MySQL, Docker, Git, RESTful APIs" },
-      { group: "AI Integration", items: "Chatbot, Generative AI, AI-assisted development" },
-      { group: "Design & Editor", items: "Figma, Adobe Illustrator, VS Code, Navicat" },
+    stats: [
+      { value: "20,000+", label: "Devices", desc: "Architected to support ~20,000+ IoT devices", icon: "devices" },
+      { value: "3", label: "Enterprise Platforms", desc: "Built 3 platforms for organizations", icon: "platforms" },
+      { value: "2", label: "Languages", desc: "Bilingual website, Thai / English", icon: "languages" },
+      { value: "5", label: "Steps", desc: "5-step application system", icon: "steps" },
+      { value: "End-to-End", label: "", desc: "Full-cycle development from start to deploy", icon: "endtoend" },
     ],
-    education: [
-      {
-        degree: "B.Sc. in Computer Science (Special Program)",
-        org: "Kasetsart University, Sriracha Campus",
-        period: "2020 – 2024",
-      },
-      {
-        degree: "High School — Science & Math Program",
-        org: "Bangpakok Wittayakom School",
-        period: "2017 – 2019",
-      },
+    softSkills: [
+      { label: "Requirement gathering", icon: "requirement" },
+      { label: "Teamwork", icon: "teamwork" },
+      { label: "User flow & wireframe design", icon: "userflow" },
+      { label: "Stakeholder communication", icon: "communication" },
+      { label: "Defining product value", icon: "value" },
+      { label: "Responsibility & punctuality", icon: "responsibility" },
     ],
-    qualities: [
-      "Works effectively in a team and coordinates well.",
-      "Responsible, punctual and detail-oriented.",
-      "Personable and adapts quickly to new work environments.",
-      "Performs well under pressure and handles change well.",
-      "Creative, open to and eager to learn new things for continuous growth.",
-    ],
-    languages: [],
+    careerGoal: {
+      from: "FULL-STACK DEVELOPER",
+      to: "PRODUCT OWNER",
+      quote:
+        "Focused on building products that serve users and the business with the right technology — to create lasting value and results.",
+    },
   },
 };

@@ -73,12 +73,12 @@ export const content: Record<Lang, Dict> = {
   th: {
     nav: { about: "เกี่ยวกับ", work: "ผลงาน", skills: "ทักษะ", contact: "ติดต่อ", cta: "ติดต่อ" },
     hero: {
-      badge: "Developer → Product Owner",
-      titleA: "สร้าง product",
-      titleHi: "ที่คนใช้จริง",
-      titleB: "ตั้งแต่ปัญหาจนถึง release",
+      badge: "Full-stack Developer → Product Owner",
+      titleA: "Developer ที่ลงมือ build",
+      titleHi: "จริงทั้ง stack",
+      titleB: "และต่อยอดเป็น Product Owner",
       tagline:
-        "Product Owner สาย builder — ออกแบบและพัฒนา product มาทั้ง stack ด้วยตัวเอง เขียน requirement ที่ทีม dev ทำได้จริง ขับเคลื่อนด้วย data และ user need",
+        "เริ่มจากสาย dev — ออกแบบและพัฒนา product เองทั้ง frontend, backend และ infra เลยรู้ว่ากว่า feature จะถึงมือ user ต้องผ่านอะไร ตอนนี้ต่อยอดเป็น Product Owner ที่เขียน requirement ทีม dev ทำได้จริง ขับเคลื่อนด้วย data และ user need",
       primaryCta: "ดูผลงาน",
       secondaryCta: "ติดต่อ",
       stats: [
@@ -182,6 +182,126 @@ export const content: Record<Lang, Dict> = {
           ],
           stack: ["React", "Material-UI", "i18n", "REST API"],
           metric: { value: "4 / 28", label: "section / เกณฑ์ประเมิน" },
+          images: [
+            { src: "/survey-dashboard.png", caption: "Dashboard สรุปผล — 4 หมวด (Product Quality / Delivery / Staff / Improvement) แยกตามแผนก" },
+          ],
+        },
+        {
+          tag: "Senior Project / Full-stack",
+          role: "ทำเองทั้งหมด — UX/UI + full-stack",
+          title: "AI Content Writer Assistant",
+          subtitle: "เว็บแอปช่วยสร้างคอนเทนต์ด้วย AI — โปรเจคจบการศึกษา",
+          problem:
+            "การสร้างคอนเทนต์คุณภาพ (บทความ SEO, โพสต์โซเชียล, สคริปต์วิดีโอ) ใช้เวลามากและต้องอาศัยทักษะการเขียน ผู้ใช้ทั่วไปทำเองได้ยาก",
+          solution:
+            "พัฒนาเว็บแอปครบวงจรเองทั้ง stack — ออกแบบ UX/UI ใน Figma, frontend React + Tailwind responsive, backend Node.js + Express เชื่อมหลาย AI API (ChatGPT, Gemini, Claude) ให้ผู้ใช้เลือกโมเดล กรอกหัวข้อ/กลุ่มเป้าหมาย/โทน/ความยาว แล้ว generate คอนเทนต์ตามรูปแบบที่ต้องการ",
+          result:
+            "ผู้ใช้สร้างคอนเทนต์คุณภาพได้เร็วและง่าย รองรับหลายรูปแบบ (SEO / โซเชียล / สคริปต์วิดีโอ) เหมาะกับทุกระดับทักษะ — deploy ใช้งานจริง",
+          highlights: [
+            "เลือก AI model ได้: ChatGPT / Gemini / Claude",
+            "สร้างบทความ SEO, โพสต์โซเชียล, สคริปต์วิดีโอ",
+            "ปรับแต่ง: หัวข้อ, กลุ่มเป้าหมาย, โทนการเขียน, ความยาว",
+            "UX/UI design ใน Figma",
+            "Frontend React + TailwindCSS, responsive",
+            "Backend Node.js + Express เชื่อมหลาย AI API + จัดการ SEO + deploy",
+          ],
+          stack: ["React", "TailwindCSS", "Node.js", "Express", "AI API", "Figma"],
+          metric: { value: "Thesis", label: "โปรเจคจบ end-to-end" },
+          images: [
+            { src: "/thesis-ai-hero.png", caption: "หน้าแรก — AI Content Writer Assistant" },
+            { src: "/thesis-ai-detail.png", caption: "UX/UI, Frontend และ Backend" },
+          ],
+        },
+        {
+          tag: "Full-stack — เว็บจองสตูดิโอ",
+          role: "ทำเองทั้งหมด — UX/UI + full-stack (ฝึกงาน)",
+          title: "Canvas Studio",
+          subtitle: "เว็บไซต์จองสตูดิโอถ่ายภาพ — full-stack พร้อม admin",
+          problem:
+            "สตูดิโอถ่ายภาพต้องการเว็บไซต์ให้ลูกค้าจองเวลาใช้สตูดิโอออนไลน์ พร้อมหลังบ้านให้แอดมินจัดการและตรวจสอบการจอง",
+          solution:
+            "พัฒนาเว็บครบวงจรเองทั้ง stack — ออกแบบ UX/UI ใน Figma, frontend HTML/CSS/JavaScript, backend PHP + MySQL ระบบจองสตูดิโอ + admin dashboard จัดการการจอง (ยืนยัน/ยกเลิก), payment slip และใบกำกับภาษี รองรับ 2 ภาษา",
+          result:
+            "deploy ใช้งานจริงที่ canvasstudio.in.th — ลูกค้าจองออนไลน์ได้ แอดมินจัดการการจองได้ครบในระบบเดียว",
+          highlights: [
+            "ระบบจองสตูดิโอออนไลน์ (Studio 1 / 2 / Equipment)",
+            "Admin Dashboard — จัดการการจอง ยืนยัน/ยกเลิก",
+            "อัปโหลด payment slip + ใบกำกับภาษี",
+            "รองรับ 2 ภาษา (ไทย/อังกฤษ)",
+            "UX/UI ใน Figma, responsive ทุกอุปกรณ์",
+          ],
+          stack: ["HTML / CSS / JS", "PHP", "MySQL", "Figma"],
+          metric: { value: "Live", label: "canvasstudio.in.th" },
+          link: { url: "https://canvasstudio.in.th", label: "ดูเว็บจริง" },
+          images: [
+            { src: "/canvas-hero.png", caption: "หน้าเว็บ Canvas Studio — จองสตูดิโอ (deploy จริง)" },
+            { src: "/canvas-detail.png", caption: "UX/UI (Figma), Frontend และ Admin Dashboard (PHP/MySQL)" },
+          ],
+        },
+        {
+          tag: "UX/UI Design — โมบายแอป",
+          role: "ออกแบบ UX/UI (Figma)",
+          title: "KU SWAP",
+          subtitle: "แอปแลกเปลี่ยนของมือสองสำหรับนักศึกษา ม.เกษตร",
+          problem:
+            "นักศึกษามีของมือสอง (เสื้อผ้า กระเป๋า รองเท้า) ที่ไม่ใช้แล้ว อยากแลกเปลี่ยนกันในมหาวิทยาลัย แต่ไม่มีช่องทางที่น่าเชื่อถือและจัดการง่าย",
+          solution:
+            "ออกแบบ UX/UI โมบายแอปใน Figma — ระบบลงประกาศของ, ค้นหาและกรองตามหมวด, ระบบแต้ม (point) สำหรับแลกเปลี่ยน, คำขอแลกเปลี่ยน (exchange request), โปรไฟล์ผู้ใช้ พร้อม rating และประวัติการแลก",
+          result:
+            "ได้ flow และ prototype แอปครบทั้งการค้นหา ลงของ แลกเปลี่ยน และจัดการบัญชี ออกแบบให้ใช้ง่ายตาม theme ของมหาวิทยาลัย",
+          highlights: [
+            "ค้นหา + กรองตามหมวด (เสื้อผ้า / กระเป๋า / รองเท้า)",
+            "ระบบแต้ม — แลกได้สูงสุด 3 ครั้ง/วัน",
+            "Exchange request + แจ้งเตือน",
+            "โปรไฟล์ + rating + ประวัติการแลก",
+            "ออกแบบใน Figma ตาม theme ม.เกษตร",
+          ],
+          stack: ["Figma", "UX/UI Design", "Prototyping"],
+          metric: { value: "Mobile", label: "UX/UI design" },
+          images: [{ src: "/kuswap.png", caption: "หน้าจอแอป KU SWAP — ค้นหา, แต้ม, แลกเปลี่ยน, โปรไฟล์" }],
+        },
+        {
+          tag: "UX/UI Design — เว็บไซต์",
+          role: "ออกแบบ UX/UI เว็บไซต์",
+          title: "TIERRA",
+          subtitle: "เว็บไซต์บริษัทออกแบบสถาปัตยกรรม Tierra Design",
+          problem:
+            "บริษัทออกแบบสถาปัตย์/ภูมิสถาปัตย์ต้องการเว็บไซต์ที่นำเสนอผลงาน (housing, interior) อย่างสวยงามและเป็นมืออาชีพ",
+          solution:
+            "ออกแบบ UX/UI เว็บไซต์ — โครงสร้าง Works (Housing / Interior), About, Clients, Contact พร้อมแผนที่ เน้น layout ภาพใหญ่โชว์งานออกแบบให้ดูหรูและสะอาด",
+          result:
+            "ได้ดีไซน์เว็บที่นำเสนอ portfolio งานสถาปัตย์ได้ครบ ดูเป็นมืออาชีพ ใช้งานง่าย",
+          highlights: [
+            "โครงสร้าง: Works (Housing / Interior), About, Clients, Contact",
+            "Layout ภาพใหญ่โชว์งานออกแบบ",
+            "หน้า Contact + แผนที่",
+            "ดีไซน์ minimal สะอาด ระดับมืออาชีพ",
+          ],
+          stack: ["Figma", "UX/UI Design", "Web Design"],
+          metric: { value: "Web", label: "UX/UI design" },
+          images: [{ src: "/tierra.png", caption: "เว็บไซต์ Tierra Design — About, แผนที่, Housing, Interior" }],
+        },
+        {
+          tag: "UX/UI Design — เว็บไซต์",
+          role: "ออกแบบ UX/UI เว็บไซต์",
+          title: "Thoongthong Food Villa",
+          subtitle: "เว็บไซต์ตลาดถุงทอง ฟู้ดวิลล่า บางบ่อ — 2 ภาษา",
+          problem:
+            "ตลาดถุงทอง ฟู้ดวิลล่า ต้องการเว็บไซต์ประชาสัมพันธ์ตลาด ผังร้านค้า ข่าวสาร และช่องทางติดต่อ รองรับทั้งไทย/อังกฤษ",
+          solution:
+            "ออกแบบ UX/UI เว็บไซต์ตลาด — ผังตลาด, หน้าเกี่ยวกับตลาด, ข่าวสาร/โปรโมชัน (street food, food truck), ฟอร์มติดต่อสอบถาม พร้อม gallery ภาพบรรยากาศ รองรับ 2 ภาษา",
+          result:
+            "ได้เว็บตลาดที่แสดงผังร้าน ข่าวสาร และบรรยากาศครบ ติดต่อสอบถามผ่านฟอร์มได้ รองรับไทย/อังกฤษ",
+          highlights: [
+            "ผังตลาด + รายการร้านค้า",
+            "ข่าวสาร / โปรโมชัน + QR code",
+            "ฟอร์มติดต่อสอบถาม",
+            "Gallery ภาพบรรยากาศตลาด",
+            "รองรับ 2 ภาษา ไทย / อังกฤษ",
+          ],
+          stack: ["Figma", "UX/UI Design", "Web Design"],
+          metric: { value: "Web", label: "UX/UI design" },
+          images: [{ src: "/thoongthong.png", caption: "เว็บตลาดถุงทอง ฟู้ดวิลล่า — ฟอร์มติดต่อ + gallery" }],
         },
       ],
     },
@@ -221,12 +341,12 @@ export const content: Record<Lang, Dict> = {
   en: {
     nav: { about: "About", work: "Work", skills: "Skills", contact: "Contact", cta: "Get in touch" },
     hero: {
-      badge: "Developer → Product Owner",
-      titleA: "Building products",
-      titleHi: "people actually use",
-      titleB: "from problem to release",
+      badge: "Full-stack Developer → Product Owner",
+      titleA: "A developer who builds",
+      titleHi: "the whole stack",
+      titleB: "now owning the product",
       tagline:
-        "A builder-minded Product Owner — I've designed and shipped products across the full stack. I write requirements dev teams can act on, and drive decisions with data and real user needs.",
+        "I started in dev — designing and shipping products across frontend, backend and infra myself, so I know what it takes for a feature to reach the user. Now a Product Owner who writes requirements dev teams can build, driven by data and real user needs.",
       primaryCta: "View work",
       secondaryCta: "Contact",
       stats: [
@@ -330,6 +450,126 @@ export const content: Record<Lang, Dict> = {
           ],
           stack: ["React", "Material-UI", "i18n", "REST API"],
           metric: { value: "4 / 28", label: "sections / criteria" },
+          images: [
+            { src: "/survey-dashboard.png", caption: "Results dashboard — 4 aspects (Product Quality / Delivery / Staff / Improvement) by department" },
+          ],
+        },
+        {
+          tag: "Senior Project / Full-stack",
+          role: "Solo — UX/UI + full-stack",
+          title: "AI Content Writer Assistant",
+          subtitle: "AI-powered content generation web app — senior thesis project",
+          problem:
+            "Creating quality content (SEO articles, social posts, video scripts) is time-consuming and takes writing skill — hard for everyday users to do themselves.",
+          solution:
+            "Built the whole web app across the stack myself — designed the UX/UI in Figma, a responsive React + Tailwind frontend, and a Node.js + Express backend wiring up multiple AI APIs (ChatGPT, Gemini, Claude). Users pick a model, enter topic / audience / tone / length, and generate content in the format they need.",
+          result:
+            "Users create quality content quickly and easily across formats (SEO / social / video script), for any skill level — deployed and live.",
+          highlights: [
+            "Choose the AI model: ChatGPT / Gemini / Claude",
+            "Generate SEO articles, social posts, video scripts",
+            "Customize: topic, audience, tone, length",
+            "UX/UI designed in Figma",
+            "React + TailwindCSS frontend, responsive",
+            "Node.js + Express backend wiring multiple AI APIs + SEO + deploy",
+          ],
+          stack: ["React", "TailwindCSS", "Node.js", "Express", "AI API", "Figma"],
+          metric: { value: "Thesis", label: "end-to-end senior project" },
+          images: [
+            { src: "/thesis-ai-hero.png", caption: "Landing — AI Content Writer Assistant" },
+            { src: "/thesis-ai-detail.png", caption: "UX/UI, frontend and backend" },
+          ],
+        },
+        {
+          tag: "Full-stack — Studio Booking",
+          role: "Solo — UX/UI + full-stack (internship)",
+          title: "Canvas Studio",
+          subtitle: "Photography studio booking website — full-stack with admin",
+          problem:
+            "A photography studio needed a website for customers to book studio time online, with an admin back office to manage and verify bookings.",
+          solution:
+            "Built the whole site across the stack myself — UX/UI in Figma, an HTML/CSS/JavaScript frontend, and a PHP + MySQL backend with a booking system plus an admin dashboard to manage bookings (confirm/cancel), payment slips and tax invoices, in two languages.",
+          result:
+            "Deployed and live at canvasstudio.in.th — customers book online and admins manage every booking in one system.",
+          highlights: [
+            "Online studio booking (Studio 1 / 2 / Equipment)",
+            "Admin dashboard — manage bookings, confirm/cancel",
+            "Payment slip + tax invoice upload",
+            "Bilingual (Thai / English)",
+            "UX/UI in Figma, responsive on all devices",
+          ],
+          stack: ["HTML / CSS / JS", "PHP", "MySQL", "Figma"],
+          metric: { value: "Live", label: "canvasstudio.in.th" },
+          link: { url: "https://canvasstudio.in.th", label: "View live site" },
+          images: [
+            { src: "/canvas-hero.png", caption: "Canvas Studio site — studio booking (live)" },
+            { src: "/canvas-detail.png", caption: "UX/UI (Figma), frontend and admin dashboard (PHP/MySQL)" },
+          ],
+        },
+        {
+          tag: "UX/UI Design — Mobile App",
+          role: "UX/UI design (Figma)",
+          title: "KU SWAP",
+          subtitle: "Secondhand item-swap app for Kasetsart University students",
+          problem:
+            "Students have unused secondhand items (clothes, bags, shoes) they want to swap on campus, but there's no trustworthy, easy-to-manage channel.",
+          solution:
+            "Designed the mobile app UX/UI in Figma — item listings, search and category filters, a points system for swaps, exchange requests, and user profiles with ratings and swap history.",
+          result:
+            "A complete flow and prototype covering search, listing, swapping and account management — designed to be easy to use and on-brand with the university.",
+          highlights: [
+            "Search + filter by category (clothes / bags / shoes)",
+            "Points system — up to 3 swaps/day",
+            "Exchange requests + notifications",
+            "Profile + ratings + swap history",
+            "Designed in Figma, on KU's theme",
+          ],
+          stack: ["Figma", "UX/UI Design", "Prototyping"],
+          metric: { value: "Mobile", label: "UX/UI design" },
+          images: [{ src: "/kuswap.png", caption: "KU SWAP screens — search, points, swap, profile" }],
+        },
+        {
+          tag: "UX/UI Design — Website",
+          role: "Website UX/UI design",
+          title: "TIERRA",
+          subtitle: "Website for the Tierra Design architecture firm",
+          problem:
+            "An architecture / landscape design firm needed a website to present its work (housing, interior) beautifully and professionally.",
+          solution:
+            "Designed the website UX/UI — a Works (Housing / Interior), About, Clients, Contact structure with a map, using large-image layouts to show off the design work cleanly and elegantly.",
+          result:
+            "A web design that presents the architecture portfolio fully, looks professional and is easy to navigate.",
+          highlights: [
+            "Structure: Works (Housing / Interior), About, Clients, Contact",
+            "Large-image layouts showcasing design work",
+            "Contact page + map",
+            "Clean, minimal, professional design",
+          ],
+          stack: ["Figma", "UX/UI Design", "Web Design"],
+          metric: { value: "Web", label: "UX/UI design" },
+          images: [{ src: "/tierra.png", caption: "Tierra Design website — About, map, Housing, Interior" }],
+        },
+        {
+          tag: "UX/UI Design — Website",
+          role: "Website UX/UI design",
+          title: "Thoongthong Food Villa",
+          subtitle: "Bilingual website for Thoongthong Food Villa market, Bang Bo",
+          problem:
+            "Thoongthong Food Villa market needed a website to promote the market, its stall map, news, and contact channels, in both Thai and English.",
+          solution:
+            "Designed the market website UX/UI — a stall map, an about page, news / promotions (street food, food truck), a contact form and a photo gallery, in two languages.",
+          result:
+            "A market site showing the stall map, news and atmosphere, with an inquiry form, supporting Thai / English.",
+          highlights: [
+            "Stall map + vendor listing",
+            "News / promotions + QR codes",
+            "Contact / inquiry form",
+            "Market atmosphere gallery",
+            "Bilingual Thai / English",
+          ],
+          stack: ["Figma", "UX/UI Design", "Web Design"],
+          metric: { value: "Web", label: "UX/UI design" },
+          images: [{ src: "/thoongthong.png", caption: "Thoongthong Food Villa site — contact form + gallery" }],
         },
       ],
     },

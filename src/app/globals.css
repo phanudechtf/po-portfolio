@@ -90,27 +90,26 @@ body::before {
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 75%);
 }
 
-/* print / PDF: clean A4, hide chrome */
+/* print / PDF: keep the infographic colors, hide chrome */
 @media print {
   @page {
     size: A4;
-    margin: 14mm;
+    margin: 8mm;
   }
   body::before {
     display: none;
+  }
+  body {
+    background: #fff;
   }
   .no-print {
     display: none !important;
   }
   .print-sheet {
-    color: #000 !important;
-    background: #fff !important;
-  }
-  .print-sheet * {
-    color: #1a1a1a !important;
-    border-color: #d4d4d4 !important;
-  }
-  .print-accent {
-    color: #4f46e5 !important;
+    max-width: 100% !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
   }
 }

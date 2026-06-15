@@ -11,8 +11,8 @@ export function CaseStudies() {
 
   const labels =
     lang === "th"
-      ? { problem: "ปัญหา", solution: "ทางแก้", result: "ผลลัพธ์" }
-      : { problem: "Problem", solution: "Solution", result: "Result" };
+      ? { problem: "ปัญหา", solution: "ทางแก้", result: "ผลลัพธ์", highlights: "ไฮไลต์" }
+      : { problem: "Problem", solution: "Solution", result: "Result", highlights: "Highlights" };
 
   return (
     <section id="work" className="border-t border-border py-20 sm:py-28">
@@ -39,7 +39,7 @@ function Card({
 }: {
   c: CaseStudy;
   index: number;
-  labels: { problem: string; solution: string; result: string };
+  labels: { problem: string; solution: string; result: string; highlights: string };
 }) {
   return (
     <Reveal
@@ -93,18 +93,25 @@ function Card({
 
         {/* aside */}
         <div className="flex flex-col gap-5 border-t border-border bg-surface-2/40 p-6 sm:p-8 lg:border-l lg:border-t-0">
-          <div>
-            <div className="font-display text-4xl font-semibold text-gradient">{c.metric.value}</div>
-            <div className="mt-1 text-sm text-muted">{c.metric.label}</div>
+          <div className="rounded-xl border border-border bg-surface px-4 py-3.5">
+            <div className="font-display text-4xl font-semibold leading-none text-gradient">
+              {c.metric.value}
+            </div>
+            <div className="mt-1.5 text-sm text-muted">{c.metric.label}</div>
           </div>
-          <ul className="mt-auto space-y-2.5">
-            {c.highlights.map((h) => (
-              <li key={h} className="flex gap-2 text-sm text-muted">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-teal" />
-                {h}
-              </li>
-            ))}
-          </ul>
+          <div>
+            <div className="mb-3 text-xs font-semibold uppercase tracking-wider text-faint">
+              {labels.highlights}
+            </div>
+            <ul className="space-y-2.5">
+              {c.highlights.map((h) => (
+                <li key={h} className="flex gap-2 text-sm text-muted">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-teal" />
+                  {h}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
